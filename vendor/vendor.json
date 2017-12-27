@@ -1,6 +1,11 @@
 {
 	"comment": "",
 	"ignore": "test",
+	"heroku": {
+		"install": [
+			"./app"
+		]
+	},
 	"package": [
 		{
 			"checksumSHA1": "c5ukZzC6DTIJP1eXRKJU4QanswQ=",
