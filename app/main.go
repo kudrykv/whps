@@ -49,7 +49,10 @@ func main()  {
 		defer c.Close()
 
 		for {
-			c.ReadMessage()
+			_, _, err := c.ReadMessage()
+			if err != nil {
+				return
+			}
 		}
 	})
 
