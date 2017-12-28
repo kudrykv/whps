@@ -87,6 +87,7 @@ func (h *wswhHandler) WebSocket(w http.ResponseWriter, r *http.Request) {
 				continue
 			}
 
+			l.WithField("id", resp.Id).Info("replay response to the service")
 			hachiko <- &resp
 
 		default:
