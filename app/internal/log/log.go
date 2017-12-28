@@ -12,7 +12,6 @@ func init() {
 	logger.Out = os.Stdout
 	logger.Formatter = &logrus.TextFormatter{
 		TimestampFormat: "2006-01-02T15:04:05.000",
-		ForceColors:     true,
 	}
 }
 
