@@ -3,14 +3,13 @@ package main
 import (
 	"goji.io"
 	"net/http"
-	"github.com/caarlos0/env"
-	"github.com/kudrykv/webhookproxy/app/config"
 	"goji.io/pat"
 	"github.com/gorilla/websocket"
 	"fmt"
 	"sync"
 	"io/ioutil"
 	"encoding/json"
+	"os"
 )
 
 type Req struct {
@@ -18,10 +17,7 @@ type Req struct {
 	Body   []byte      `json:"body"`
 }
 
-func main()  {
-	cfg := config.Server{}
-	env.Parse(&cfg)
-
+func main() {
 	sm := sync.Map{}
 
 	mux := goji.NewMux()
@@ -93,5 +89,14 @@ func main()  {
 		w.WriteHeader(http.StatusOK)
 	})
 
-	http.ListenAndServe(":" + cfg.Port, mux)
+	http.ListenAndServe(":"+getPort(), mux)
+}
+
+func getPort() string {
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
+		port = "8080"
+	}
+
+	return port
 }
