@@ -1,7 +1,6 @@
 package types
 
 import (
-	"encoding/json"
 	"net/http"
 	"time"
 )
@@ -11,9 +10,9 @@ type Server struct {
 }
 
 type Req struct {
-	Id     string          `json:"id"`
-	Time   time.Time       `json:"time"`
-	Status int             `json:"status"`
-	Header http.Header     `json:"headers"`
-	Body   json.RawMessage `json:"body"`
+	Id     string      `json:"id"`
+	Time   time.Time   `json:"time"`
+	Status int         `json:"status"`
+	Header http.Header `json:"headers"`
+	Body   []byte      `json:"body"`
 }
