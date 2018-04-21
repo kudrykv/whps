@@ -10,7 +10,6 @@ import (
 	"github.com/rs/xid"
 	"github.com/sirupsen/logrus"
 	"goji.io/pat"
-	"io/ioutil"
 	"net/http"
 	"reflect"
 	"sync"
@@ -119,13 +118,14 @@ func (h *wswhHandler) Webhook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	bodyBytes, err := ioutil.ReadAll(r.Body)
-	r.Body.Close()
+	var bodyBytes json.RawMessage
+	err := json.NewDecoder(r.Body).Decode(&bodyBytes)
 	if err != nil {
 		httpshort.StringMessage(w, http.StatusInternalServerError, "failed to read body")
 		l.WithField("err", err).Error("failed to read body")
 		return
 	}
+	r.Body.Close()
 
 	req := types.Req{
 		Id:     id,
