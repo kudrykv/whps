@@ -2,7 +2,7 @@ package signals
 
 import (
 	"errors"
-	"github.com/kudrykv/webhookproxy/app/types"
+	"github.com/kudrykv/whps/whps/types"
 	"sync"
 	"time"
 )
