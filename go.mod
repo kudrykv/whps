@@ -1,3 +1,4 @@
+// +heroku install ./whps/...
 module github.com/kudrykv/whps
 
 require (
