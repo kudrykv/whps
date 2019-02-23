@@ -35,6 +35,8 @@ application.
 
 # Usage
 
+This is a backend. It should be used via client.
+
 Service can push webhooks to the
 `https://whps.herokuapp.com/webhook/<channame>`.
 The `<channame>` can be arbitrary alphanumeric name of your choice.
