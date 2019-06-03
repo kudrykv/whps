@@ -8,6 +8,7 @@ import (
 	"goji.io"
 	"goji.io/pat"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -21,6 +22,7 @@ func main() {
 
 	mux.HandleFunc(pat.New("/websocket/:channel"), wswh.WebSocket)
 	mux.HandleFunc(pat.Post("/webhook/:channel"), wswh.Webhook)
+	mux.HandleFunc(pat.Get("/"+os.Getenv("GOOGLE_VERIFY")), handler.NewVerify().Verify)
 
 	log.Info("whps is about to start")
 	http.ListenAndServe(":"+cfg.Port, mux)
