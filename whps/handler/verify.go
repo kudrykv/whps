@@ -13,6 +13,6 @@ func NewVerify() *verifyHandler {
 }
 
 func (h *verifyHandler) Verify(w http.ResponseWriter, r *http.Request) {
-	_, _ = w.Write([]byte(`google-site-verification: ` + os.Getenv("GOOGLE_VERIFY")))
 	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write([]byte(`google-site-verification: ` + os.Getenv("GOOGLE_VERIFY")))
 }
